@@ -32,17 +32,17 @@ public class AppVerticle extends AbstractVerticle {
 
     vertx.eventBus().consumer("to_send").handler(msg -> {
       log.info("Received Request to Send: " + msg.body());
-      vertx.eventBus().send("to_client", "{\"data\":\"Send Requested\"}");
+      vertx.eventBus().send("to_client", "Send Requested");
     });
 
     vertx.eventBus().consumer("to_publish").handler(msg -> {
       log.info("Received Request to Publish: " + msg.body());
-      vertx.eventBus().publish("to_client", "{\"data\":\"Publish Requested!\"}");
+      vertx.eventBus().publish("to_client", "Publish Requested");
     });
 
     vertx.eventBus().consumer("to_reply").handler(msg -> {
       log.info("Received Request to Reply: " + msg.body());
-      msg.reply("{\"data\":\"Reply Requested\"}");
+      msg.reply("Reply Requested");
     });
 
     router.route().handler(StaticHandler.create());
