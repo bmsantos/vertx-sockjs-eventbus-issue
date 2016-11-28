@@ -10,6 +10,6 @@ To run the fat jar:
 
     java -jar target/freemarker-loading-failure-0.0.2-SNAPSHOT.jar
 
-Open browser: [http://localhost:8080/index.html](http://localhost:8080/index.html)
+Open browser: http://localhost:8080/index.html
 
-Reported issue: TBD
+Reported issue: https://github.com/vert-x3/vertx-web/issues/485
