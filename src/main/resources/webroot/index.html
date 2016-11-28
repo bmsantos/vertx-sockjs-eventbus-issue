@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>SockJS/EB Issue</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body onload="init()">
+    <h3>Sent 3 request. One to be answered by <i>EventBus.send</i>, another by <i>EventBus.publish</i> and one by <i>Message.reply</i>.</h3>
+    <h3>Reply does not answer:</h3>
+    <p id="data">
+    </p>
+</body>
+<script type="text/javascript" src="/sockjs.min.js"></script>
+<script type="text/javascript" src="/vertx-eventbus.js"></script>
+<script type="text/javascript">
+    function init() {
+        window.eb = new EventBus('/eventbus/');
+        window.eb.onopen = function () {
+            window.eb.registerHandler('to_client', function (err, msg) {
+                console.log('Received message from client: ' + msg.body);
+                var data = document.getElementById('data');
+                data.innerText = data.innerText + msg.body + '\n';
+            });
+            window.eb.send('to_send', 'send to client');
+            window.eb.send('to_publish', 'publish to client');
+            window.eb.send('to_reply', 'reply to client');
+        };
+    }
+</script>
+</html>

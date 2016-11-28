@@ -1,0 +1,15 @@
+= Vert.x SockJS/EventBus Message.reply issue
+
+This example reproduces an issue happening with SockJS/EventBus Message reply.
+
+To reproduce build the "fat jar"
+
+    mvn package
+
+To run the fat jar:
+
+    java -jar target/freemarker-loading-failure-0.0.2-SNAPSHOT.jar
+
+Open browser: [http://localhost:8080/index.html](http://localhost:8080/index.html)
+
+Reported issue: TBD
