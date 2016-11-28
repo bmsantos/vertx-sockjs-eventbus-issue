@@ -2,11 +2,11 @@
 
 This example demonstrates SockJS/EventBus Message reply options.
 
-To reproduce build the "fat jar"
+To build:
 
     mvn package
 
-To run the fat jar:
+To run:
 
     java -jar ./target/vertx-sockjs-eb-issue-fat.jar .jar
 
