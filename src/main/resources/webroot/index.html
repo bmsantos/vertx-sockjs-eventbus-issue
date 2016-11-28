@@ -14,17 +14,19 @@
 <script type="text/javascript" src="/sockjs.min.js"></script>
 <script type="text/javascript" src="/vertx-eventbus.js"></script>
 <script type="text/javascript">
+    function callback (err, msg) {
+        console.log('Received message from client: ' + msg.body);
+        var data = document.getElementById('data');
+        data.innerText = data.innerText + msg.body + '\n';
+    }
+
     function init() {
         window.eb = new EventBus('/eventbus/');
         window.eb.onopen = function () {
-            window.eb.registerHandler('to_client', function (err, msg) {
-                console.log('Received message from client: ' + msg.body);
-                var data = document.getElementById('data');
-                data.innerText = data.innerText + msg.body + '\n';
-            });
+            window.eb.registerHandler('to_client', callback);
             window.eb.send('to_send', 'send to client');
             window.eb.send('to_publish', 'publish to client');
-            window.eb.send('to_reply', 'reply to client');
+            window.eb.send('to_reply', 'reply to client', null, callback);
         };
     }
 </script>
